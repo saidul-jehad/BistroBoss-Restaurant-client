@@ -28,13 +28,14 @@ const Menu = () => {
             <Helmet><title>Bistro Boss | Menu</title></Helmet>
             {/* Main Cover */}
             <Cover img={imgMenu} title={"our menu"}></Cover>
+            
 
             {/* Offered Menu Items */}
             <SectionTitle heading={"Todays Offer"} subHeading={"Don'n Miss"}></SectionTitle>
             <MenuCategory items={offered}></MenuCategory>
 
             {/* desserts menu items */}
-            <MenuCategory items={desserts} title={"Desserts"} img={dessertImg} ></MenuCategory>
+            <MenuCategory items={desserts} title={"desserts"} img={dessertImg} ></MenuCategory>
 
             {/* pizza menu items */}
             <MenuCategory items={pizza} title={"pizza"} img={pizzaImg} ></MenuCategory>
