@@ -38,7 +38,9 @@ const Navbar = () => {
                         {
                             navLinks
                         }
-                        <li><NavLink to='/login'>Login</NavLink></li>
+                        {
+                            user ? <li><NavLink to='/login'>Logout</NavLink></li> : <li><NavLink to='/login'>Login</NavLink></li>
+                        }
 
                     </ul>
                 </div>

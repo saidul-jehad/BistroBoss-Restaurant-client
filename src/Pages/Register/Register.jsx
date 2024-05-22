@@ -5,25 +5,47 @@ import useAuth from '../../Hooks/useAuth';
 import { useForm } from "react-hook-form"
 import { Helmet } from 'react-helmet-async';
 import toast from 'react-hot-toast';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import SocialGoogleLogin from '../../components/SocialLogin.jsx/SocialGoogleLogin';
 
 
 const Register = () => {
-    const { createUser, updateUserProfile } = useAuth()
+    const { createUser, updateUserProfile, } = useAuth()
+    const axiosPublic = useAxiosPublic()
     const navigate = useNavigate()
+
+
     const {
         register,
         handleSubmit,
         formState: { errors },
+        reset
     } = useForm()
 
     const onSubmit = (data) => {
         // create user
         createUser(data.email, data.password)
+
             .then(() => {
                 updateUserProfile(data.name, data.photo)
+
                     .then(() => {
-                        toast.success("Sign Up Success")
-                        navigate('/login', { replace: true })
+                        // create user entry in the database 
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email
+                        }
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    console.log("database inserted");
+                                    reset()
+                                    toast.success("Sign Up Success")
+                                    navigate("/")
+                                }
+                            })
+
+
                     })
                     .catch(err => console.log(err))
             })
@@ -46,6 +68,8 @@ const Register = () => {
 
                     <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                         <h1 className="text-3xl font-bold text-center mt-6">Sign Up now!</h1>
+
+                        <SocialGoogleLogin></SocialGoogleLogin>
 
                         <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
 

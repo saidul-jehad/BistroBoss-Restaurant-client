@@ -1,4 +1,4 @@
-import { FaAddressCard, FaCalendar, FaHome, FaList } from "react-icons/fa";
+import { FaAddressCard, FaCalendar, FaEnvelope, FaHome, FaList, FaUser, FaUsers, FaUtensils } from "react-icons/fa";
 import { FaCableCar } from "react-icons/fa6";
 import { GiShoppingCart } from "react-icons/gi";
 import { NavLink, Outlet } from "react-router-dom";
@@ -6,61 +6,86 @@ import useCart from "../Hooks/useCart";
 
 const Dashboard = () => {
     const [cart] = useCart()
+
+    // TODO : get admin value from the database 
+    const isAdmin = true
+
     const dashboardLinks = <>
-        <li>
-            <NavLink to={"/dashboard/user-home"}>
-                <FaHome> </FaHome>
-                User Home
-            </NavLink>
-        </li>
+        {
+            isAdmin ? <>
+                <li>
+                    <NavLink to={"/dashboard/admin-home"}>
+                        <FaHome> </FaHome>
+                        Admin Home
+                    </NavLink>
+                </li>
 
-        <li>
-            <NavLink to={"/dashboard/reservation"}>
-                <FaCalendar></FaCalendar>
-                Reservation
-            </NavLink>
-        </li>
+                <li>
+                    <NavLink to={"/dashboard/add-items"}>
+                        <FaUtensils></FaUtensils>
+                        Add Item
+                    </NavLink>
+                </li>
 
-        <li>
-            <NavLink to={"/dashboard/cart"}>
-                <GiShoppingCart></GiShoppingCart>
-                My Cart ({cart.length})
-            </NavLink>
-        </li>
+                <li>
+                    <NavLink to={"/dashboard/mange-items"}>
+                        <FaList></FaList>
+                        Manage Items
+                    </NavLink>
+                </li>
 
-        <li>
-            <NavLink to={"/dashboard/review"}>
-                <FaAddressCard></FaAddressCard>
-                Add a Review
-            </NavLink>
-        </li>
+                <li>
+                    <NavLink to={"/dashboard/manage-bookings"}>
+                        <FaAddressCard></FaAddressCard>
+                        Mange Bookings
+                    </NavLink>
+                </li>
 
-        <li>
-            <NavLink to={"/dashboard/bookings"}>
-                <FaList></FaList>
-                My Bookings
-            </NavLink>
-        </li>
+                <li>
+                    <NavLink to={"/dashboard/all-users"}>
+                        <FaUsers></FaUsers>
+                        All Users
+                    </NavLink>
+                </li>
+            </> : <>
+                <li>
+                    <NavLink to={"/dashboard/user-home"}>
+                        <FaHome> </FaHome>
+                        User Home
+                    </NavLink>
+                </li>
 
+                <li>
+                    <NavLink to={"/dashboard/reservation"}>
+                        <FaCalendar></FaCalendar>
+                        Reservation
+                    </NavLink>
+                </li>
 
-        <div className="divider"></div>
+                <li>
+                    <NavLink to={"/dashboard/cart"}>
+                        <GiShoppingCart></GiShoppingCart>
+                        My Cart ({cart.length})
+                    </NavLink>
+                </li>
 
+                <li>
+                    <NavLink to={"/dashboard/review"}>
+                        <FaAddressCard></FaAddressCard>
+                        Add a Review
+                    </NavLink>
+                </li>
 
-        <li>
-            <NavLink to={"/"}>
-                <FaHome> </FaHome>
-                Home
-            </NavLink>
-        </li>
-
-
-        <li>
-            <NavLink to={"/order/salads"}>
-                <FaCableCar>   </FaCableCar>
-                Menu
-            </NavLink>
-        </li>
+                <li>
+                    <NavLink to={"/dashboard/bookings"}>
+                        <FaList></FaList>
+                        My Bookings
+                    </NavLink>
+                </li>
+            </>
+        }
     </>
+
     return (
         <div className="">
             <div className="navbar-start flex md:hidden">
@@ -72,6 +97,32 @@ const Dashboard = () => {
                         {
                             dashboardLinks
                         }
+
+
+                        {/* nav route  */}
+                        <div className="divider"></div>
+
+
+                        <li>
+                            <NavLink to={"/"}>
+                                <FaHome> </FaHome>
+                                Home
+                            </NavLink>
+                        </li>
+
+
+                        <li>
+                            <NavLink to={"/order/salads"}>
+                                <FaCableCar>   </FaCableCar>
+                                Menu
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to={"/order/contact"}>
+                                <FaEnvelope></FaEnvelope>
+                                Contact
+                            </NavLink>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -83,7 +134,30 @@ const Dashboard = () => {
                             dashboardLinks
                         }
 
+                        {/* nav route  */}
+                        <div className="divider"></div>
 
+
+                        <li>
+                            <NavLink to={"/"}>
+                                <FaHome> </FaHome>
+                                Home
+                            </NavLink>
+                        </li>
+
+
+                        <li>
+                            <NavLink to={"/order/salads"}>
+                                <FaCableCar>   </FaCableCar>
+                                Menu
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to={"/order/contact"}>
+                                <FaEnvelope></FaEnvelope>
+                                Contact
+                            </NavLink>
+                        </li>
 
                     </ul>
                 </div>

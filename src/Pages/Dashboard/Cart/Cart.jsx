@@ -1,7 +1,7 @@
 import { FaTrashAlt } from "react-icons/fa";
-import useCart from "../../Hooks/useCart";
+import useCart from "../../../Hooks/useCart";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 
 const Cart = () => {
