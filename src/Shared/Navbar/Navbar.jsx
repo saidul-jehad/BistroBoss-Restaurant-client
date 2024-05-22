@@ -1,31 +1,31 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import { Tooltip } from "react-tooltip";
+import { GiShoppingCart } from "react-icons/gi";
+import useCart from "../../Hooks/useCart";
 
 const Navbar = () => {
-
-
-    // const { user, logOut } = useAuth()
+    const { user, logout } = useAuth()
+    const navigate = useNavigate()
+    const [cart] = useCart()
 
     // logout user 
-    // const handleLogout = () => {
-    //     logOut()
-    //         .then(result => {
-    //             const user = result?.user
-    //             console.log(user);
-    //         })
-    //         .catch(error => console.log(error))
-    // }
+    const handleLogout = () => {
+        logout()
+            .then(result => {
+                const user = result?.user
+                console.log(user);
+                navigate('/login')
+            })
+            .catch(error => console.log(error))
+    }
 
     const navLinks = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/menu'>Our Menu</NavLink></li>
         <li><NavLink to='/order/salads'>Order Food</NavLink></li>
-        <li><NavLink to='/login'>Login</NavLink></li>
-        {/* {
-            user && <><li><NavLink to='/add-blog'>Add Blog</NavLink></li>
-                <li><NavLink to='/wishlist'>Wishlist</NavLink></li></>
-        } */}
+        {/* <li><NavLink to='/login'>Login</NavLink></li> */}
     </>
-
 
     return (
         <div className="bg-black bg-opacity-30  text-white fixed z-10 max-w-screen-xl mx-auto navbar shadow-xl rounded-b-xl mb-[50px] ">
@@ -38,9 +38,11 @@ const Navbar = () => {
                         {
                             navLinks
                         }
+                        <li><NavLink to='/login'>Login</NavLink></li>
+
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl"> <img className="h-8 w-7 rounded-sm hidden lg:flex" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIoHA-5zG2KnleyJfDiEIVoQL84WynX3ea9jEZKeD0tA&s" alt="" />BistroBoss Restaurant</a>
+                <a className="btn btn-ghost text-xl"> <img className="h-8 w-7 rounded-sm hidden lg:flex" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIoHA-5zG2KnleyJfDiEIVoQL84WynX3ea9jEZKeD0tA&s" alt="" />BistroBoss <span className="hidden md:flex">Restaurant</span></a>
             </div>
 
             <div className="lg:navbar-center hidden lg:flex">
@@ -51,14 +53,21 @@ const Navbar = () => {
                     }
                 </ul>
             </div>
-            {/* <div className="navbar-end">
+            <div className="navbar-end">
+                <Link to={"dashboard/cart"} className="mr-4">
+                    <button className="btn btn-ghost">
+                        <GiShoppingCart className="md:text-3xl text-xl"></GiShoppingCart>
+                        <div className="badge badge-secondary ">+{cart.length}</div>
+                    </button>
+                </Link>
+
                 {
                     user ? <div className="flex  items-center gap-3 md:gap-6 ">
-                        <img data-tooltip-id="my-tooltip" data-tooltip-content={user.displayName} className="h-14 w-14 rounded-full" src={user.photoURL} alt="" /> <div onClick={handleLogout}><Link to='/login' className="btn btn-accent btn-outline">LogOut</Link></div> </div> :
-                        <Link to='/login' className="btn btn-outline btn-accent">Login</Link>
+                        <img data-tooltip-id="my-tooltip" data-tooltip-content={user?.displayName} className="h-14 w-14 rounded-full" src={user.photoURL} alt="" /> <div onClick={handleLogout}><Link className="btn btn-ghost btn-outline hidden md:flex"><span className="text-white">Logout</span></Link></div> </div> :
+                        <Link to='/login' className="btn btn-outline hidden md:flex btn-ghost"><span className="text-white">Login</span></Link>
                 }
                 <Tooltip id="my-tooltip" />
-            </div> */}
+            </div>
 
 
 
