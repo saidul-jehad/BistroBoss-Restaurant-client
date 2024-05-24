@@ -5,7 +5,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 
 const Cart = () => {
-    const [cart, refetch, isPending] = useCart()
+    const [cart, refetch] = useCart()
     const axiosSecure = useAxiosSecure()
 
     const totalPrice = cart.reduce((total, item) => {
@@ -40,7 +40,6 @@ const Cart = () => {
         });
     }
 
-    if (isPending) return <div className="flex justify-center mt-14"> <span className="loading loading-bars loading-lg"></span></div>
 
     return (
         <div className="">

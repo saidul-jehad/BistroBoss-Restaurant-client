@@ -3,13 +3,14 @@ import { FaCableCar } from "react-icons/fa6";
 import { GiShoppingCart } from "react-icons/gi";
 import { NavLink, Outlet } from "react-router-dom";
 import useCart from "../Hooks/useCart";
+import useAdmin from "../Hooks/useAdmin";
 
 const Dashboard = () => {
     const [cart] = useCart()
 
     // TODO : get admin value from the database 
-    const isAdmin = true
-
+    const [isAdmin] = useAdmin()
+    console.log(isAdmin);
     const dashboardLinks = <>
         {
             isAdmin ? <>
