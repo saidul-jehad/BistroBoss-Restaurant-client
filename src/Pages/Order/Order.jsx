@@ -20,13 +20,13 @@ const Order = () => {
     const [menu] = useMenuData()
     const [tabIndex, setTabIndex] = useState(initialIndex)
 
-    console.log(category);
+    // console.log(category);
 
     // const offered = menu.filter(item => item.category === "offered")
     const desserts = menu.filter(item => item.category === "dessert")
     const pizza = menu.filter(item => item.category === "pizza")
     const salads = menu.filter(item => item.category === "salad")
-    const soups = menu.filter(item => item.category === "soutep")
+    const soups = menu.filter(item => item.category === "soup")
     const drinks = menu.filter(item => item.category === "drinks")
 
 

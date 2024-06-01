@@ -22,13 +22,15 @@ const Menu = () => {
     const salads = menu.filter(item => item.category === "salad")
     const soups = menu.filter(item => item.category === "soup")
 
+    console.log(soups);
+
 
     return (
         <div>
             <Helmet><title>Bistro Boss | Menu</title></Helmet>
             {/* Main Cover */}
             <Cover img={imgMenu} title={"our menu"}></Cover>
-            
+
 
             {/* Offered Menu Items */}
             <SectionTitle heading={"Todays Offer"} subHeading={"Don'n Miss"}></SectionTitle>
@@ -45,8 +47,6 @@ const Menu = () => {
 
             {/* soups menu items */}
             <MenuCategory items={soups} title={"soups"} img={soupImg} ></MenuCategory>
-
-
 
 
         </div>

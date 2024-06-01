@@ -7,7 +7,7 @@ const Root = () => {
     const isLogin = location.pathname.includes("login") || location.pathname.includes("register")
 
     return (
-        <div className="max-w-screen-xl mx-auto">
+        <div>
             {isLogin || <Navbar></Navbar>}
             <Outlet></Outlet>
             {isLogin || <Footer></Footer>}

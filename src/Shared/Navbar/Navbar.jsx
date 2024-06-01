@@ -3,18 +3,20 @@ import useAuth from "../../Hooks/useAuth";
 import { Tooltip } from "react-tooltip";
 import { GiShoppingCart } from "react-icons/gi";
 import useCart from "../../Hooks/useCart";
+import useAdmin from "../../Hooks/useAdmin";
 
 const Navbar = () => {
     const { user, logout } = useAuth()
+    const [isAdmin] = useAdmin()
     const navigate = useNavigate()
     const [cart] = useCart()
 
     // logout user 
     const handleLogout = () => {
         logout()
-            .then(result => {
-                const user = result?.user
-                console.log(user);
+            .then(() => {
+
+                // console.log(user);
                 navigate('/login')
             })
             .catch(error => console.log(error))
@@ -24,7 +26,12 @@ const Navbar = () => {
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/menu'>Our Menu</NavLink></li>
         <li><NavLink to='/order/salads'>Order Food</NavLink></li>
-        {/* <li><NavLink to='/login'>Login</NavLink></li> */}
+        {
+            user && isAdmin && <li><NavLink to='/dashboard/admin-home'>Dashboard</NavLink></li>
+        }
+        {
+            user && !isAdmin && <li><NavLink to='/dashboard/user-home'>Dashboard</NavLink></li>
+        }
     </>
 
     return (

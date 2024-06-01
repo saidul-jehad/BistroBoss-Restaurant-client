@@ -9,8 +9,6 @@ const useCart = () => {
 
 
     const {
-        isPending,
-        error,
         data: cart = [],
         refetch,
     } = useQuery({
@@ -22,7 +20,7 @@ const useCart = () => {
         }
     })
 
-    return [cart, refetch, isPending];
+    return [cart, refetch,];
 };
 
 export default useCart;

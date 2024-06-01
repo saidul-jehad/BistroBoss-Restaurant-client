@@ -14,7 +14,7 @@ const FoodCard = ({ item }) => {
     const [, refetch] = useCart()
 
 
-    const handleAddToCart = (food) => {
+    const handleAddToCart = () => {
         if (user && user.email) {
             // TODO: send to the cartItem in database
             const cartItem = {
@@ -28,7 +28,7 @@ const FoodCard = ({ item }) => {
 
             axiosSecure.post("/carts", cartItem)
                 .then(res => {
-                    console.log(res.data);
+                    // console.log(res.data);
                     if (res.data.insertedId) {
                         toast.success(`${name} added to your cart`)
                         refetch()
@@ -63,7 +63,7 @@ const FoodCard = ({ item }) => {
                 <p>{recipe}</p>
                 <div className="card-actions justify-end">
                     <button
-                        onClick={() => handleAddToCart(item)}
+                        onClick={() => handleAddToCart()}
                         className="btn btn-outline border-0 border-b-4  hover:text-orange-400 bg-slate-100 text-orange-400"> Add to Card</button>
                 </div>
             </div>

@@ -21,9 +21,9 @@ const SocialGoogleLogin = () => {
 
                 // api call
                 axiosPublic.post('/users', userInfo)
-                    .then(res => {
-                        console.log(res.data);
-                        console.log(result.user);
+                    .then(() => {
+                        // console.log(res.data);
+                        // console.log(result.user);
                         toast.success("Login Success")
                         navigate(from, { replace: true })
                     })

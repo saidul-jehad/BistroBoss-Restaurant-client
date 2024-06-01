@@ -2,6 +2,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import useCart from "../../../Hooks/useCart";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 
 const Cart = () => {
@@ -25,7 +26,7 @@ const Cart = () => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/carts/${id}`)
                     .then(result => {
-                        console.log(result.data);
+                        // console.log(result.data);
 
                         if (result.data.deletedCount > 0) {
                             Swal.fire({
@@ -46,7 +47,13 @@ const Cart = () => {
             <div className="flex justify-evenly font-semibold">
                 <h3 className="lg:text-4xl text-2xl  uppercase">Total Orders: {cart.length}</h3>
                 <h3 className="lg:text-4xl text-2xl uppercase">Total Price: ${totalPrice}</h3>
-                <button className="btn btn-outline btn-warning px-4">Pay</button>
+                {
+                    cart.length ?
+                        <Link to={"/dashboard/payment"}>
+                            <button className="btn btn-outline btn-warning px-4">Pay</button>
+                        </Link> :
+                        <button disabled className="btn btn-outline btn-warning px-4">Pay</button>
+                }
             </div>
 
 

@@ -11,6 +11,14 @@ import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layout/Dashboard";
 import Cart from "../Pages/Dashboard/Cart/Cart";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import AddItems from "../Pages/Dashboard/AddItems/AddItems";
+import AdminRoute from "./AdminRoute";
+import ManageItem from "../Pages/Dashboard/ManageItem/ManageItem";
+import UpdateItem from "../Pages/Dashboard/UpdateItem/UpdateItem";
+import Payment from "../Pages/Dashboard/Payment/Payment";
+import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
+import UserHome from "../Pages/Dashboard/UserHome/UserHome";
+import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
 
 export const router = createBrowserRouter([
     {
@@ -23,7 +31,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/menu',
-                element: <PrivateRoute><Menu></Menu></PrivateRoute>
+                element:<Menu></Menu>
             },
             {
                 path: '/order',
@@ -47,16 +55,48 @@ export const router = createBrowserRouter([
         path: 'dashboard',
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
+            // users route
+            {
+                path: 'user-home',
+                element: <UserHome></UserHome>
+            },
             {
                 path: 'cart',
                 element: <Cart></Cart>
             },
 
+            {
+                path: 'payment',
+                element: <Payment></Payment>,
+            },
+            {
+                path: 'payment-history',
+                element: <PaymentHistory></PaymentHistory>
+            }
+            ,
             // admin routes
             {
+                path: 'admin-home',
+                element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+            },
+
+            {
+                path: 'add-items',
+                element: <AdminRoute> <AddItems></AddItems></AdminRoute>
+            },
+            {
+                path: 'manage-items',
+                element: <AdminRoute><ManageItem></ManageItem></AdminRoute>
+            },
+            {
+                path: 'update-item/:id',
+                element: <AdminRoute> <UpdateItem></UpdateItem></AdminRoute>,
+                loader: ({ params }) => fetch(`https://bistro-boss-server-chi-five.vercel.app/menu/${params.id}`)
+            },
+            {
                 path: 'all-users',
-                element: <AllUsers></AllUsers>
-            }
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+            },
         ]
     }
 ]);

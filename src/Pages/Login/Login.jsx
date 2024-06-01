@@ -32,8 +32,8 @@ const Login = () => {
 
         // login user
         login(email, password)
-            .then(result => {
-                console.log(result.user);
+            .then(() => {
+                // console.log(result.user);
                 toast.success("Login Success")
                 navigate(from, { replace: true })
             })
@@ -89,8 +89,8 @@ const Login = () => {
 
                             </div>
                             <div className="form-control mt-2">
-                                {/* TODO: disabled={disable} */}
-                                <input disabled={false} className="btn btn-outline text-white bg-[#D1A054]" type="submit" value="Login" />
+                                {/* DONE: disabled={disable} */}
+                                <input disabled={disable} className="btn btn-outline text-white bg-[#D1A054]" type="submit" value="Login" />
                             </div>
 
                             <p className='text-sm text-center text-[#D1A054]'>New here ? <Link to={"/register"} className='btn-link text-[#D1A054]'>Create a New Account</Link> </p>

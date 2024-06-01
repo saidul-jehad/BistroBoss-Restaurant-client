@@ -1,7 +1,7 @@
-import { FaAddressCard, FaCalendar, FaEnvelope, FaHome, FaList, FaUser, FaUsers, FaUtensils } from "react-icons/fa";
+import { FaAddressCard, FaCalendar, FaEnvelope, FaHome, FaList, FaUsers, FaUtensils } from "react-icons/fa";
 import { FaCableCar } from "react-icons/fa6";
 import { GiShoppingCart } from "react-icons/gi";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import useCart from "../Hooks/useCart";
 import useAdmin from "../Hooks/useAdmin";
 
@@ -10,7 +10,7 @@ const Dashboard = () => {
 
     // TODO : get admin value from the database 
     const [isAdmin] = useAdmin()
-    console.log(isAdmin);
+    // console.log(isAdmin);
     const dashboardLinks = <>
         {
             isAdmin ? <>
@@ -29,17 +29,17 @@ const Dashboard = () => {
                 </li>
 
                 <li>
-                    <NavLink to={"/dashboard/mange-items"}>
+                    <NavLink to={"/dashboard/manage-items"}>
                         <FaList></FaList>
                         Manage Items
                     </NavLink>
                 </li>
 
                 <li>
-                    <NavLink to={"/dashboard/manage-bookings"}>
+                    <Link>
                         <FaAddressCard></FaAddressCard>
                         Mange Bookings
-                    </NavLink>
+                    </Link>
                 </li>
 
                 <li>
@@ -57,10 +57,10 @@ const Dashboard = () => {
                 </li>
 
                 <li>
-                    <NavLink to={"/dashboard/reservation"}>
+                    <Link>
                         <FaCalendar></FaCalendar>
                         Reservation
-                    </NavLink>
+                    </Link>
                 </li>
 
                 <li>
@@ -71,16 +71,16 @@ const Dashboard = () => {
                 </li>
 
                 <li>
-                    <NavLink to={"/dashboard/review"}>
+                    <Link >
                         <FaAddressCard></FaAddressCard>
                         Add a Review
-                    </NavLink>
+                    </Link>
                 </li>
 
                 <li>
-                    <NavLink to={"/dashboard/bookings"}>
+                    <NavLink to={"/dashboard/payment-history"}>
                         <FaList></FaList>
-                        My Bookings
+                        Payment History
                     </NavLink>
                 </li>
             </>
